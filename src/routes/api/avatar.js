@@ -3,6 +3,7 @@ import fetch from 'node-fetch';
 import { URL } from 'url';
 import { promisify } from 'util';
 import { pipeline } from 'stream';
+import CONSTANTS from '../../backend/constants.js';
 
 const streamPipeline = promisify(pipeline);
 
@@ -27,7 +28,7 @@ export async function get(req, res) {
     return res.status(400).json({ error: 'No JWT authentication token for user'});
   }
 
-  const url = new URL('/api/avatars', process.env.OPENPAAS_URL);
+  const url = new URL('/api/avatars', CONSTANTS.OPENPAAS.URL);
   url.searchParams.append('email', email);
   url.searchParams.append('objectType', 'email');
   url.searchParams.append('displayName', name);

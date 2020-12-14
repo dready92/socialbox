@@ -17,6 +17,9 @@ export default {
     CONNECTION: 'mongodb://localhost:27000/?poolSize=20&w=majority',
     DATABASE: 'sobox',
   },
+  OPENPAAS: {
+    URL: 'https://dev.open-paas.org/',
+  },
   JMAP: {
     SESSION: 'https://dev.open-paas.org/jmap/session',
     JMAP: 'https://dev.open-paas.org/jmap',

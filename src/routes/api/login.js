@@ -2,10 +2,9 @@ import login from '../../backend/core/openpaas/login';
 import getJWT from '../../backend/core/openpaas/jwt';
 import jwtEvent from '../../backend/core/events/jwt';
 import logger from '../../backend/core/logger';
+import CONSTANTS from '../../backend/constants';
 
 const debug = logger.extend('login-post');
-
-const { OPENPAAS_URL } = process.env;
 
 export async function post(req, res) {
   if (
@@ -25,12 +24,12 @@ export async function post(req, res) {
 
   try {
     const { user, headers } = await login(
-      OPENPAAS_URL,
+      CONSTANTS.OPENPAAS.URL,
       req.body.username,
       req.body.password
     );
     const cookie = headers.get('set-cookie').split('; ').shift();
-    const jwt = await getJWT(OPENPAAS_URL, cookie);
+    const jwt = await getJWT(CONSTANTS.OPENPAAS.URL, cookie);
     let userEmail;
     try {
       userEmail = findUserEmail(user);

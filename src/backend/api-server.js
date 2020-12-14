@@ -4,13 +4,8 @@ import express from 'express';
 import session from 'express-session';
 import sessionFileStore from 'session-file-store';
 
-const { PORT, NODE_ENV, OPENPAAS_URL } = process.env;
+const { PORT, NODE_ENV } = process.env;
 const dev = NODE_ENV === 'development';
-
-if (!OPENPAAS_URL) {
-  console.log('OPENPAAS_URL is mandatory');
-  process.exit(1);
-}
 
 async function start() {
   const server = express();
